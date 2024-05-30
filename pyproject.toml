@@ -1,0 +1,43 @@
+[tool.pylint.format]
+good-names = ['x', 'y', 'z', 'i', 'id', 'ok']
+
+[tool.pylint.messages_control]
+disable = [
+    'missing-class-docstring',
+    'missing-function-docstring',
+    'missing-module-docstring',
+    'no-name-in-module',
+    'useless-import-alias',
+    'line-too-long',
+    'too-many-arguments',
+    'too-few-public-methods',
+]
+
+[tool.pyright]
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportMissingTypeStubs = false
+
+[tool.poetry]
+name = "CT2onverter"
+version = "0.1.0"
+description = ""
+authors = ["winstxnhdw <you@example.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ctranslate2 = "^4.2.1"
+torch = "^2.3.0"
+transformers = "^4.41.1"
+accelerate = "^0.30.1"
+
+[tool.poetry.group.dev.dependencies]
+pyright = "^1.1.362"
+pylint = "^3.1.0"
+ruff = "^0.4.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
