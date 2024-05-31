@@ -1,6 +1,6 @@
 # ct2hf
 
-`ct2hf` is a friendly CLI tool for converting a supported Hugging Face transformer model to its [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format and uploading them to your Hugging Face repository. If you're tired of manually converting models and running into low-memory or storage issues, `ct2hf` is the perfect tool for you.
+`ct2hf` is a friendly CLI tool for converting a supported Hugging Face transformer model to its [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format and uploading them to your Hugging Face repository. If you're tired of manually converting models and running into low-memory, storage, and permission issues, `ct2hf` is the perfect tool for you.
 
 ## Installation
 
@@ -36,6 +36,20 @@ options:
 
 ### Example
 
+The minimal usage of `ct2hf` involves specifying the model ID of the transformer model you would like to convert.
+
 ```bash
 ct2hf openchat/openchat-3.6-8b-20240522
+```
+
+You can also specify the name of the output model.
+
+```bash
+ct2hf openchat/openchat-3.6-8b-20240522 --output-name openchat-3.6-ct2-int8
+```
+
+You can also specify the files to copy to the output model.
+
+```bash
+ct2hf openchat/openchat-3.6-8b-20240522 --files-to-copy tokenizer.model
 ```
