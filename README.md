@@ -6,17 +6,17 @@
 [![formatter.yml](https://github.com/winstxnhdw/ct2hf/actions/workflows/formatter.yml/badge.svg)](https://github.com/winstxnhdw/ct2hf/actions/workflows/formatter.yml)
 [![dependabot.yml](https://github.com/winstxnhdw/ct2hf/actions/workflows/dependabot.yml/badge.svg)](https://github.com/winstxnhdw/ct2hf/actions/workflows/dependabot.yml)
 
-`ct2hf` is a friendly CLI tool for converting a supported Hugging Face transformer model to its [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format and uploading them to your Hugging Face repository. If you're tired of manually converting models and running into low-memory, storage, and permission issues, `ct2hf` is the perfect tool for you.
+`ct2hf` is a user-friendly CLI tool designed to simplify the process of converting supported Hugging Face transformer models into a [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format. Additionally, it uploads the converted model to your Hugging Face repository. With `ct2hf`, you can avoid the hassle of manual conversions and the common issues of low memory, storage limitations, and permission errors. This tool is perfect for making your workflow more efficient and trouble-free.
 
 ## Installation
 
-You can install `ct2hf` via pip with the following.
+You can install `ct2hf` via `pip` with the following.
 
 ```bash
 pip install git+https://github.com/winstxnhdw/ct2hf
 ```
 
-You can also uninstall `ct2hf` via pip with the following.
+Then, you can uninstall `ct2hf` and all of its dependencies with the following.
 
 ```bash
 pip uninstall ct2hf
