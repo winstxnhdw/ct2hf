@@ -16,13 +16,7 @@ def parse_args() -> Namespace:
 def main():
     args = parse_args()
 
-    files_to_copy = [
-        'tokenizer.json',
-        'tokenizer_config.json',
-        *args.files_to_copy
-    ]
-
-    with ModelConverter(args.model_id, args.output_name, args.preserve_models, files_to_copy) as converter:
+    with ModelConverter(args.model_id, args.output_name, args.preserve_models, args.files_to_copy) as converter:
         converter.generate_gitattributes()
         converter.upload_to_huggingface(converter.converted_model_path.name)
 

@@ -23,7 +23,6 @@ class ModelConverter:
         self.converted_model_path = Path(converter.convert(
             output_name or f"{model_id.split('/')[1]}-ct2-int8",
             quantization='int8',
-            force=True,
         ))
 
 
