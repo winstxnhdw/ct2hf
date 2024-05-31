@@ -1,0 +1,16 @@
+name: Format
+
+on:
+  push:
+    paths:
+      - .github/workflows/formatter.yml
+      - pyproject.toml
+      - poetry.lock
+      - ct2hf
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    uses: winstxnhdw/actions/.github/workflows/format-python.yml@main

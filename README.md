@@ -1,5 +1,10 @@
 # ct2hf
 
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
+[![main.yml](https://github.com/winstxnhdw/ct2hf/actions/workflows/main.yml/badge.svg)](https://github.com/winstxnhdw/ct2hf/actions/workflows/main.yml)
+[![formatter.yml](https://github.com/winstxnhdw/ct2hf/actions/workflows/formatter.yml/badge.svg)](https://github.com/winstxnhdw/ct2hf/actions/workflows/formatter.yml)
+[![dependabot.yml](https://github.com/winstxnhdw/ct2hf/actions/workflows/dependabot.yml/badge.svg)](https://github.com/winstxnhdw/ct2hf/actions/workflows/dependabot.yml)
+
 `ct2hf` is a friendly CLI tool for converting a supported Hugging Face transformer model to its [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format and uploading them to your Hugging Face repository. If you're tired of manually converting models and running into low-memory, storage, and permission issues, `ct2hf` is the perfect tool for you.
 
 ## Installation
