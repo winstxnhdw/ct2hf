@@ -3,10 +3,11 @@ from shutil import rmtree
 
 from ctranslate2.converters import TransformersConverter
 from huggingface_hub import HfApi, snapshot_download
+from argparse import ArgumentParser
 
 
-def clean_up(converted_model: str, snapshot_path: str):
-    rmtree(Path(snapshot_path).parent.parent)
+def clean_up(snapshot_path: Path, converted_model: str):
+    rmtree(snapshot_path)
     rmtree(converted_model)
 
 
@@ -25,43 +26,73 @@ def upload_to_huggingface(converted_model: str):
 def generate_gitattributes(converted_model: str):
     converted_model_path = Path(converted_model)
 
-    with open(converted_model_path / '.gitattributes', 'w', encoding='utf-8') as file:
+    with open(converted_model_path/'.gitattributes', 'w', encoding='utf-8') as file:
         file.writelines(
             f'{path.relative_to(converted_model_path)} filter=lfs diff=lfs merge=lfs -text'
             for path in converted_model_path.rglob('*') if path.is_file() and path.stat().st_size > 10485760
         )
 
 
-def main():
-    model_owner = 'openchat'
-    model_name = 'openchat-3.6-8b-20240522'
-    output_model_name = 'openchat-3.6'
-
-    files_to_copy = [
-        'tokenizer.json',
-        'tokenizer_config.json',
-    ]
-
-    model = f'{model_owner}/{model_name}'
-    snapshot_path = snapshot_download(model)
-
+def convert_model(model_id: str, output_name: str, files_to_copy: list[str], snapshot_path: Path) -> str:
     converter = TransformersConverter(
-        model,
+        model_id,
         copy_files=files_to_copy,
         load_as_float16=True,
         low_cpu_mem_usage=True,
         trust_remote_code=True,
     )
 
-    converted_model = converter.convert(
-        f'{output_model_name or model_name}-ct2-int8',
+    converted_model_path = converter.convert(
+        output_name or f"{model_id.split('/')[1]}-ct2-int8",
         quantization='int8',
         force=True,
     )
 
-    generate_gitattributes(converted_model)
-    upload_to_huggingface(converted_model)
-    clean_up(converted_model, snapshot_path)
+    rmtree(snapshot_path)
+
+    return converted_model_path
+
+
+class ModelConverter:
+    def __init__(self):
+        pass
+
+
+    def __enter__(self):
+        return self
+
+
+    def __exit__(self, *_):
+        pass
+
+
+def parse_args():
+    parser = ArgumentParser(description='convert and upload a transformer model to huggingface')
+    parser.add_argument('model_id', type=str, help='transformer model to convert')
+    parser.add_argument('--output_name', type=str, help='name of the output model')
+    parser.add_argument('--files_to_copy', type=str, nargs='+', help='files to copy to the output model', default=[])
+
+    return parser.parse_known_args()[0]
+
+
+def main():
+    args = parse_args()
+
+    files_to_copy = [
+        'tokenizer.json',
+        'tokenizer_config.json',
+        *args.files_to_copy
+    ]
+
+
+    try:
+        snapshot_path = Path(snapshot_download(args.model_id)).parent.parent
+        converted_model = convert_model(args.model_id, args.output_name, files_to_copy, snapshot_path)
+        generate_gitattributes(converted_model)
+        upload_to_huggingface(converted_model)
+
+    finally:
+        clean_up(snapshot_path, converted_model)
 
 
 if __name__ == '__main__':

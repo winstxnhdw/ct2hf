@@ -19,7 +19,7 @@ reportUnknownMemberType = false
 reportMissingTypeStubs = false
 
 [tool.poetry]
-name = "CT2onverter"
+name = "ct2hf"
 version = "0.1.0"
 description = ""
 authors = ["winstxnhdw <you@example.com>"]
