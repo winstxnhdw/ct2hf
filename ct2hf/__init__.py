@@ -1,10 +1,10 @@
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
 from shutil import rmtree
-from typing import Self
 
 from ctranslate2.converters import TransformersConverter
 from huggingface_hub import HfApi, snapshot_download
+from typing_extensions import Self
 
 
 class ModelConverter:

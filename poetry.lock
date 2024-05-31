@@ -761,7 +761,10 @@ files = [
 [package.dependencies]
 astroid = ">=3.2.2,<=3.3.0-dev0"
 colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
-dill = {version = ">=0.3.7", markers = "python_version >= \"3.12\""}
+dill = [
+    {version = ">=0.3.7", markers = "python_version >= \"3.12\""},
+    {version = ">=0.3.6", markers = "python_version >= \"3.11\" and python_version < \"3.12\""},
+]
 isort = ">=4.2.5,<5.13.0 || >5.13.0,<6"
 mccabe = ">=0.6,<0.8"
 platformdirs = ">=2.2.0"
@@ -1323,6 +1326,7 @@ nvidia-cusparse-cu12 = {version = "12.1.0.106", markers = "platform_system == \"
 nvidia-nccl-cu12 = {version = "2.20.5", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
 nvidia-nvtx-cu12 = {version = "12.1.105", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""}
 sympy = "*"
+triton = {version = "2.3.0", markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\" and python_version < \"3.12\""}
 typing-extensions = ">=4.8.0"
 
 [package.extras]
@@ -1416,6 +1420,29 @@ video = ["av (==9.2.0)", "decord (==0.6.0)"]
 vision = ["Pillow (>=10.0.1,<=15.0)"]
 
 [[package]]
+name = "triton"
+version = "2.3.0"
+description = "A language and compiler for custom Deep Learning operations"
+optional = false
+python-versions = "*"
+files = [
+    {file = "triton-2.3.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5ce4b8ff70c48e47274c66f269cce8861cf1dc347ceeb7a67414ca151b1822d8"},
+    {file = "triton-2.3.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3c3d9607f85103afdb279938fc1dd2a66e4f5999a58eb48a346bd42738f986dd"},
+    {file = "triton-2.3.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:218d742e67480d9581bafb73ed598416cc8a56f6316152e5562ee65e33de01c0"},
+    {file = "triton-2.3.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:381ec6b3dac06922d3e4099cfc943ef032893b25415de295e82b1a82b0359d2c"},
+    {file = "triton-2.3.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:038e06a09c06a164fef9c48de3af1e13a63dc1ba3c792871e61a8e79720ea440"},
+    {file = "triton-2.3.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6d8f636e0341ac348899a47a057c3daea99ea7db31528a225a3ba4ded28ccc65"},
+]
+
+[package.dependencies]
+filelock = "*"
+
+[package.extras]
+build = ["cmake (>=3.20)", "lit"]
+tests = ["autopep8", "flake8", "isort", "numpy", "pytest", "scipy (>=1.7.1)", "torch"]
+tutorials = ["matplotlib", "pandas", "tabulate", "torch"]
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1445,5 +1472,5 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.12"
-content-hash = "85f091375f440c9a2bf8d35f0f5e7a2c7ad02da5e5410c2d8fffa2560387ee4b"
+python-versions = "^3.11"
+content-hash = "0e087843064a2bb47e93a0864ccd822fe09b1d5c924d29537f5120db8ecddf6a"
