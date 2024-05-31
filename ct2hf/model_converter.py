@@ -56,7 +56,6 @@ class ModelConverter:
         repository_id = f"{hf_api.whoami()['name']}/{converted_model}"
 
         hf_api.create_repo(repository_id, exist_ok=True)
-        hf_api.delete_file('.gitattributes', repository_id)
         hf_api.upload_folder(
             repo_id=repository_id,
             folder_path=converted_model,
