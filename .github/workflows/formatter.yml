@@ -6,7 +6,7 @@ on:
       - .github/workflows/formatter.yml
       - pyproject.toml
       - poetry.lock
-      - ct2hf
+      - ct2hf/**
 
 permissions:
   contents: write
