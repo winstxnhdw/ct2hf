@@ -18,7 +18,7 @@ def main():
 
     with ModelConverter(args.model_id, args.output_name, args.preserve_models, args.files_to_copy) as converter:
         converter.generate_gitattributes()
-        converter.upload_to_huggingface(converter.converted_model_path.name)
+        converter.upload_to_huggingface()
 
 
 if __name__ == '__main__':

@@ -18,6 +18,12 @@ reportUnknownVariableType = false
 reportUnknownMemberType = false
 reportMissingTypeStubs = false
 
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = 'single'
+
 [tool.poetry]
 name = "ct2hf"
 version = "0.1.0"
