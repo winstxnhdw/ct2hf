@@ -37,12 +37,12 @@ ctranslate2 = "^4.2.1"
 torch = "^2.3.0"
 transformers = "^4.41.1"
 accelerate = "^0.30.1"
-typing-extensions = "^4.12.0"
+typing-extensions = "^4.12.1"
 
 [tool.poetry.group.dev.dependencies]
 pyright = "^1.1.362"
 pylint = "^3.1.0"
-ruff = "^0.4.4"
+ruff = "^0.4.7"
 
 [tool.poetry.scripts]
 ct2hf = "ct2hf:main"
