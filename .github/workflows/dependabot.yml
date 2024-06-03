@@ -9,6 +9,8 @@ jobs:
   auto-merge:
     needs: test
     uses: winstxnhdw/actions/.github/workflows/dependabot-public.yml@main
+    with:
+      disable-test: true
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
     permissions:
