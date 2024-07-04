@@ -2,18 +2,18 @@
 
 [[package]]
 name = "accelerate"
-version = "0.31.0"
+version = "0.32.0"
 description = "Accelerate"
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "accelerate-0.31.0-py3-none-any.whl", hash = "sha256:0fc608dc49584f64d04711a39711d73cb0ad4ef3d21cddee7ef2216e29471144"},
-    {file = "accelerate-0.31.0.tar.gz", hash = "sha256:b5199865b26106ccf9205acacbe8e4b3b428ad585e7c472d6a46f6fb75b6c176"},
+    {file = "accelerate-0.32.0-py3-none-any.whl", hash = "sha256:736559a653bb21acbc769839b265e298f2bcb775d3dc170f573d9aefdbb4bfb2"},
+    {file = "accelerate-0.32.0.tar.gz", hash = "sha256:ebd60cf05a43c6a23b68360d1861403bf74d8c8f9a2287b1947c1d194d686769"},
 ]
 
 [package.dependencies]
 huggingface-hub = "*"
-numpy = ">=1.17"
+numpy = ">=1.17,<2.0.0"
 packaging = ">=20.0"
 psutil = "*"
 pyyaml = "*"
@@ -1494,4 +1494,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "2011464ab9455e2a999d1899f1615f4906f08bcac53c54c4d62f4d356ea644b8"
+content-hash = "35baa3fbc75197241710e51c23fe1bd76d20820191d311c6e550bced28794f6c"
