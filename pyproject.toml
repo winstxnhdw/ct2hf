@@ -40,7 +40,7 @@ accelerate = "^0.32.1"
 typing-extensions = "^4.12.2"
 
 [tool.poetry.group.dev.dependencies]
-pyright = "^1.1.371"
+pyright = "^1.1.372"
 pylint = "^3.2.5"
 ruff = "^0.5.2"
 
