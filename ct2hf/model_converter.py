@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pathlib import Path
 from shutil import rmtree
 
@@ -5,7 +7,6 @@ from ctranslate2.converters import TransformersConverter
 from huggingface_hub import HfApi
 from huggingface_hub.constants import HF_HUB_CACHE
 from huggingface_hub.file_download import repo_folder_name
-from typing_extensions import Self
 
 
 class ModelConverter:
@@ -31,7 +32,7 @@ class ModelConverter:
         self.output_directory = output_name or f"{model_id.split('/')[1]}-ct2-int8"
         self.converted_model_path = Path(converter.convert(self.output_directory, quantization='int8'))
 
-    def __enter__(self) -> Self:
+    def __enter__(self) -> ModelConverter:
         if not self.preserve_models:
             rmtree(self.storage_path, ignore_errors=True)
 

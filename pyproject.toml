@@ -37,7 +37,6 @@ ctranslate2 = "^4.4.0"
 torch = "^2.4.1"
 transformers = "^4.44.2"
 accelerate = "^0.34.2"
-typing-extensions = "^4.12.2"
 
 [tool.poetry.group.dev.dependencies]
 pyright = "^1.1.381"
