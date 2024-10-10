@@ -39,7 +39,7 @@ transformers = "^4.45.2"
 accelerate = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
-pyright = "^1.1.383"
+pyright = "^1.1.384"
 pylint = "^3.3.1"
 ruff = "^0.6.9"
 
