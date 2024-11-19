@@ -22,7 +22,7 @@ readme = "README.md"
 python = "^3.9"
 ctranslate2 = "^4.5.0"
 torch = "^2.5.1"
-transformers = "^4.46.2"
+transformers = "^4.46.3"
 accelerate = "^1.1.1"
 
 [tool.poetry.group.dev.dependencies]
