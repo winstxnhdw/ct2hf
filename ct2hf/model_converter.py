@@ -11,7 +11,7 @@ from typing_extensions import Self
 
 
 class ModelConverter:
-    __slots__ = ("preserve_models", "storage_path", "output_directory", "converted_model_path")
+    __slots__ = ("converted_model_path", "output_directory", "preserve_models", "storage_path")
 
     def __init__(
         self,
