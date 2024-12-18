@@ -22,11 +22,11 @@ readme = "README.md"
 python = "^3.9"
 ctranslate2 = "^4.5.0"
 torch = "^2.5.1"
-transformers = "^4.47.0"
+transformers = "^4.47.1"
 accelerate = "^1.2.1"
 
 [tool.poetry.group.dev.dependencies]
-pyright = "^1.1.390"
+pyright = "^1.1.391"
 ruff = "^0.8.3"
 
 [tool.poetry.scripts]
