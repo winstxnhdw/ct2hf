@@ -2,13 +2,13 @@
 
 [[package]]
 name = "accelerate"
-version = "1.2.1"
+version = "1.3.0"
 description = "Accelerate"
 optional = false
 python-versions = ">=3.9.0"
 files = [
-    {file = "accelerate-1.2.1-py3-none-any.whl", hash = "sha256:be1cbb958cf837e7cdfbde46b812964b1b8ae94c9c7d94d921540beafcee8ddf"},
-    {file = "accelerate-1.2.1.tar.gz", hash = "sha256:03e161fc69d495daf2b9b5c8d5b43d06e2145520c04727b5bda56d49f1a43ab5"},
+    {file = "accelerate-1.3.0-py3-none-any.whl", hash = "sha256:5788d9e6a7a9f80fed665cf09681c4dddd9dc056bea656db4140ffc285ce423e"},
+    {file = "accelerate-1.3.0.tar.gz", hash = "sha256:518631c0adb80bd3d42fb29e7e2dc2256bcd7c786b0ba9119bbaa08611b36d9c"},
 ]
 
 [package.dependencies]
@@ -18,7 +18,7 @@ packaging = ">=20.0"
 psutil = "*"
 pyyaml = "*"
 safetensors = ">=0.4.3"
-torch = ">=1.10.0"
+torch = ">=2.0.0"
 
 [package.extras]
 deepspeed = ["deepspeed"]
@@ -1315,4 +1315,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "cd69364617d52f2254a604b34661a8ea2bad31b8e317f5825c49256f63e71e54"
+content-hash = "e068311e1ab11aff0fc593f964cd5460260dd2989cb121aae289960ec564a396"
