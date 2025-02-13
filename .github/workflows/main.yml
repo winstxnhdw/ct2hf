@@ -6,7 +6,7 @@ on:
     paths:
       - .github/workflows/main.yml
       - pyproject.toml
-      - poetry.lock
+      - uv.lock
       - ct2hf/**
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       matrix:
         python-version: [3.9, '3.10', 3.11, 3.12]
 
-    uses: winstxnhdw/actions/.github/workflows/python.yml@main
+    uses: winstxnhdw/actions/.github/workflows/uv.yml@main
     with:
       python-version: ${{ matrix.python-version }}
       disable-test: true

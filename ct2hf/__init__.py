@@ -9,6 +9,23 @@ def parse_args() -> Namespace:
     parser.add_argument("--output-name", type=str, help="name of the output model")
     parser.add_argument("--files-to-copy", type=str, nargs="+", help="files to copy to the output model", default=[])
     parser.add_argument("--preserve-models", action="store_true", help="do not delete the downloaded models")
+    parser.add_argument(
+        "--quantisation",
+        type=str,
+        choices=[
+            "default",
+            "int8",
+            "int8_float32",
+            "int8_float16",
+            "int8_bfloat16",
+            "int16",
+            "float16",
+            "bfloat16",
+            "float32",
+        ],
+        help="quantisation type",
+        default="int8",
+    )
 
     return parser.parse_known_args()[0]
 
@@ -21,6 +38,7 @@ def main() -> None:
         args.output_name,
         files_to_copy=args.files_to_copy,
         preserve_models=args.preserve_models,
+        quantisation=args.quantisation,
     ) as converter:
         converter.generate_gitattributes()
         converter.upload_to_huggingface()
