@@ -26,7 +26,6 @@ class ModelConverter:
             copy_files=files_to_copy,
             load_as_float16=True,
             low_cpu_mem_usage=True,
-            trust_remote_code=True,
         )
 
         self.preserve_models = preserve_models
