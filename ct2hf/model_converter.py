@@ -30,7 +30,7 @@ class ModelConverter:
 
         self.preserve_models = preserve_models
         self.storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=model_id, repo_type="model")
-        self.output_directory = output_name or f"{model_id.split('/')[1]}-ct2-int8"
+        self.output_directory = output_name or f"{model_id.split('/', 1)[1]}-ct2-int8"
         self.converted_model_path = Path(converter.convert(self.output_directory, quantization="int8"))
 
     def __enter__(self) -> Self:
