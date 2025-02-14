@@ -6,27 +6,13 @@
 
 `ct2hf` is a user-friendly CLI tool designed to simplify the process of converting supported Hugging Face transformer models into a [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format. Additionally, it uploads the converted model to your Hugging Face repository. With `ct2hf`, you can avoid the hassle of manual conversions and the common issues of low memory, storage limitations, and permission errors.
 
-## Installation
-
-You can install `ct2hf` via `pip` with the following.
-
-```bash
-pip install git+https://github.com/winstxnhdw/ct2hf
-```
-
-Then, you can uninstall `ct2hf` and all of its dependencies with the following.
-
-```bash
-pip uninstall ct2hf
-```
-
-Preferably, you can use [uv](https://github.com/astral-sh/uv) to execute `ct2hf` emphemerally.
-
-```bash
-uvx --from git+https://github.com/winstxnhdw/ct2hf ct2hf --help
-```
-
 ## Usage
+
+You may use `pip` to install `ct2hf` but we recommended using [uv](https://github.com/astral-sh/uv) to avoid polluting your Python environment.
+
+```bash
+uvx --python 3.12 --from git+https://github.com/winstxnhdw/ct2hf ct2hf --help
+```
 
 By default, `ct2hf` avoids leaving behind any unnecessary files. If you would like to preserve the downloaded models, you can use the `--preserve-models` flag. Additionally, if `--quantisation` is not specified, the quantisation type defaults to `int8`.
 
