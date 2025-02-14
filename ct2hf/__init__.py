@@ -12,6 +12,8 @@ def parse_args() -> Namespace:
     parser.add_argument(
         "--quantisation",
         type=str,
+        help="quantisation type",
+        default="int8",
         choices=[
             "default",
             "int8",
@@ -23,8 +25,6 @@ def parse_args() -> Namespace:
             "bfloat16",
             "float32",
         ],
-        help="quantisation type",
-        default="int8",
     )
 
     return parser.parse_known_args()[0]
