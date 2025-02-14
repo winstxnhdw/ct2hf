@@ -20,6 +20,12 @@ Then, you can uninstall `ct2hf` and all of its dependencies with the following.
 pip uninstall ct2hf
 ```
 
+Preferably, you can use [uv](https://github.com/astral-sh/uv) to execute `ct2hf` emphemerally.
+
+```bash
+uvx --from git+https://github.com/winstxnhdw/ct2hf ct2hf --help
+```
+
 ## Usage
 
 By default, `ct2hf` avoids leaving behind any unnecessary files. If you would like to preserve the downloaded models, you can use the `--preserve-models` flag. Additionally, if `--quantisation` is not specified, the quantisation type defaults to `int8`.
