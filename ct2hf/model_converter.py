@@ -22,6 +22,8 @@ class ModelConverter:
         preserve_models: bool,
         quantisation: str,
     ) -> None:
+        model_name = model_id.split("/", 1)[1]
+        no_quantisation = quantisation == "none"
         converter = TransformersConverter(
             model_id,
             copy_files=files_to_copy,
@@ -29,8 +31,6 @@ class ModelConverter:
             low_cpu_mem_usage=True,
         )
 
-        model_name = model_id.split("/", 1)[1]
-        no_quantisation = quantisation == "none"
         self.preserve_models = preserve_models
         self.storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=model_id, repo_type="model")
 
