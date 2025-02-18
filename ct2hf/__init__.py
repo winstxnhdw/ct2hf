@@ -15,7 +15,7 @@ def parse_args() -> Namespace:
         help="quantisation type",
         default="int8",
         choices=[
-            "default",
+            "none",
             "int8",
             "int8_float32",
             "int8_float16",
