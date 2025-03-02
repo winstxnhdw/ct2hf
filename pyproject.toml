@@ -10,7 +10,7 @@ dependencies = ["accelerate>=1.4.0", "ctranslate2>=4.5.0", "torch>=2.6.0", "tran
 ct2hf = "ct2hf:main"
 
 [dependency-groups]
-dev = ["nodejs-wheel-binaries>=22.14.0", "pyright>=1.1.394", "ruff>=0.9.7"]
+dev = ["nodejs-wheel-binaries>=22.14.0", "pyright>=1.1.396", "ruff>=0.9.9"]
 
 [build-system]
 requires = ["hatchling"]
