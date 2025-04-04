@@ -20,6 +20,7 @@ class ModelConverter:
         *,
         files_to_copy: list[str],
         preserve_models: bool,
+        revision: str | None,
         quantisation: str,
     ) -> None:
         model_name = model_id.split("/", 1)[1]
@@ -28,6 +29,7 @@ class ModelConverter:
             model_id,
             copy_files=files_to_copy,
             load_as_float16=True,
+            revision=revision,
             low_cpu_mem_usage=True,
         )
 

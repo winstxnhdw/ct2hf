@@ -28,6 +28,7 @@ options:
   --output-name         name of the output model
   --files-to-copy       files to copy to the output model
   --preserve-models     do not delete the downloaded models
+  --revision            revision of the model to convert
   --quantisation        none, int8_float32, int8_float16, int8_bfloat16, int16, float16, bfloat16, float32
 ```
 

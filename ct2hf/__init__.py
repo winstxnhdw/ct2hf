@@ -9,6 +9,7 @@ def parse_args() -> Namespace:
     parser.add_argument("--output-name", type=str, help="name of the output model")
     parser.add_argument("--files-to-copy", type=str, nargs="+", help="files to copy to the output model", default=[])
     parser.add_argument("--preserve-models", action="store_true", help="do not delete the downloaded models")
+    parser.add_argument("--revision", type=str, help="revision of the model to convert", default=None)
     parser.add_argument(
         "--quantisation",
         type=str,
@@ -38,6 +39,7 @@ def main() -> None:
         args.output_name,
         files_to_copy=args.files_to_copy,
         preserve_models=args.preserve_models,
+        revision=args.revision,
         quantisation=args.quantisation,
     ) as converter:
         converter.generate_gitattributes()
