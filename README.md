@@ -11,7 +11,7 @@
 You may use `pip` to install `ct2hf` but we recommended using [uv](https://github.com/astral-sh/uv) to avoid polluting your Python environment.
 
 ```bash
-uvx --python 3.12 --from git+https://github.com/winstxnhdw/ct2hf ct2hf --help
+uvx --no-cache --python 3.12 --from git+https://github.com/winstxnhdw/ct2hf ct2hf --help
 ```
 
 By default, `ct2hf` avoids leaving behind any unnecessary files. If you would like to preserve the downloaded models, you can use the `--preserve-models` flag. Additionally, if `--quantisation` is not specified, the quantisation type defaults to `int8`.
