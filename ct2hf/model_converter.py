@@ -22,6 +22,7 @@ class ModelConverter:
         preserve_models: bool,
         revision: str | None,
         quantisation: str,
+        compatiblity: bool,
     ) -> None:
         model_name = model_id.split("/", 1)[1]
         no_quantisation = quantisation == "none"
@@ -30,7 +31,7 @@ class ModelConverter:
             copy_files=files_to_copy,
             load_as_float16=True,
             revision=revision,
-            low_cpu_mem_usage=True,
+            low_cpu_mem_usage=not compatiblity,
         )
 
         self.preserve_models = preserve_models

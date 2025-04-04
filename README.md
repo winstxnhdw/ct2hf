@@ -16,6 +16,9 @@ uvx --no-cache --python 3.12 --from git+https://github.com/winstxnhdw/ct2hf ct2h
 
 By default, `ct2hf` avoids leaving behind any unnecessary files. If you would like to preserve the downloaded models, you can use the `--preserve-models` flag. Additionally, if `--quantisation` is not specified, the quantisation type defaults to `int8`.
 
+> [!TIP]\
+> `ct2hf` has some memory usage optimisations that may not be compatible with some models. If you encounter any issues, try using the `--compatibility` flag.
+
 ```yaml
 usage: ct2hf
 
@@ -30,6 +33,7 @@ options:
   --preserve-models     do not delete the downloaded models
   --revision            revision of the model to convert
   --quantisation        none, int8_float32, int8_float16, int8_bfloat16, int16, float16, bfloat16, float32
+  --compatibility       use compatibility mode at the cost of higher memory usage
 ```
 
 ### Example

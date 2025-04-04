@@ -10,6 +10,7 @@ def parse_args() -> Namespace:
     parser.add_argument("--files-to-copy", type=str, nargs="+", help="files to copy to the output model", default=[])
     parser.add_argument("--preserve-models", action="store_true", help="do not delete the downloaded models")
     parser.add_argument("--revision", type=str, help="revision of the model to convert", default=None)
+    parser.add_argument("--compatibility", action="store_true", help="better compatibility but higher memory usage")
     parser.add_argument(
         "--quantisation",
         type=str,
@@ -41,6 +42,7 @@ def main() -> None:
         preserve_models=args.preserve_models,
         revision=args.revision,
         quantisation=args.quantisation,
+        compatiblity=args.compatibility,
     ) as converter:
         converter.generate_gitattributes()
         converter.upload_to_huggingface()
