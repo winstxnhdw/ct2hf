@@ -8,6 +8,9 @@
 
 ## Usage
 
+> [!NOTE]\
+> You have to be logged in to Hugging Face to upload the converted model onto your account. You can do this by running `uvx --from huggingface-hub huggingface-cli login`.
+
 You may use `pip` to install `ct2hf` but we recommended using [uv](https://github.com/astral-sh/uv) to avoid polluting your Python environment.
 
 ```bash
