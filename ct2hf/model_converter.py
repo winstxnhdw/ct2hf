@@ -32,6 +32,7 @@ class ModelConverter:
             load_as_float16=True,
             revision=revision,
             low_cpu_mem_usage=not compatiblity,
+            trust_remote_code=True,
         )
 
         self.preserve_models = preserve_models
