@@ -8,7 +8,7 @@ from ct2hf import generate_gitattributes
 
 
 def gitattribute_line(path: Path) -> str:
-    return f"{path} filter=lfs diff=lfs merge=lfs -text\n"
+    return f"{path.as_posix()} filter=lfs diff=lfs merge=lfs -text\n"
 
 
 def get_lines_from_generated_gitattributes(repository_directory: Path, *, min_lfs_size: int) -> list[str]:
