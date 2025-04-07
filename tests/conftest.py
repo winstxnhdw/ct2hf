@@ -33,8 +33,8 @@ def mock_repository(tmp_path: Path) -> RepositoryFiles:
 
     return RepositoryFiles(
         repository_directory=repository_directory,
-        small_file=small_file,
-        large_file=large_file,
-        small_file_in_subdir=small_file_in_subdir,
-        large_file_in_subdir=large_file_in_subdir,
+        small_file=small_file.relative_to(repository_directory),
+        large_file=large_file.relative_to(repository_directory),
+        small_file_in_subdir=small_file_in_subdir.relative_to(repository_directory),
+        large_file_in_subdir=large_file_in_subdir.relative_to(repository_directory),
     )

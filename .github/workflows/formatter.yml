@@ -6,7 +6,7 @@ on:
       - .github/workflows/formatter.yml
       - pyproject.toml
       - uv.lock
-      - ct2hf/**
+      - '**.py'
 
 permissions:
   contents: write

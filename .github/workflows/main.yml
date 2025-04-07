@@ -8,13 +8,16 @@ on:
       - pyproject.toml
       - uv.lock
       - ct2hf/**
+      - tests/**
 
 jobs:
   test:
     strategy:
       matrix:
         python-version: [3.9, '3.10', 3.11, 3.12]
+        runs-on: [ubuntu, windows, macos]
 
     uses: winstxnhdw/actions/.github/workflows/uv.yml@main
     with:
+      runs-on: ${{ matrix.runs-on }}-latest
       python-version: ${{ matrix.python-version }}

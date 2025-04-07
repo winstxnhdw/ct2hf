@@ -7,7 +7,7 @@ from conftest import RepositoryFiles
 from ct2hf import generate_gitattributes
 
 
-def gitattribute_line(path: str) -> str:
+def gitattribute_line(path: Path) -> str:
     return f"{path} filter=lfs diff=lfs merge=lfs -text\n"
 
 
@@ -20,18 +20,26 @@ def get_lines_from_generated_gitattributes(repository_directory: Path, *, min_lf
 
 def test_all_files_in_gitattributes(mock_repository: RepositoryFiles) -> None:
     lines = get_lines_from_generated_gitattributes(mock_repository.repository_directory, min_lfs_size=10)
+    expected_lines = {
+        gitattribute_line(mock_repository.small_file),
+        gitattribute_line(mock_repository.large_file),
+        gitattribute_line(mock_repository.small_file_in_subdir),
+        gitattribute_line(mock_repository.large_file_in_subdir),
+    }
 
-    assert lines[0] == gitattribute_line("large_file.txt")
-    assert lines[1] == gitattribute_line("small_file.txt")
-    assert lines[2] == gitattribute_line("subdir/large_file_in_subdir.txt")
-    assert lines[3] == gitattribute_line("subdir/small_file_in_subdir.txt")
+    assert len(lines) == len(expected_lines)
+    assert set(lines) == expected_lines
 
 
 def test_large_files_in_gitattributes(mock_repository: RepositoryFiles) -> None:
     lines = get_lines_from_generated_gitattributes(mock_repository.repository_directory, min_lfs_size=100)
+    expected_lines = {
+        gitattribute_line(mock_repository.large_file),
+        gitattribute_line(mock_repository.large_file_in_subdir),
+    }
 
-    assert lines[0] == gitattribute_line("large_file.txt")
-    assert lines[1] == gitattribute_line("subdir/large_file_in_subdir.txt")
+    assert len(lines) == len(expected_lines)
+    assert set(lines) == expected_lines
 
 
 def test_no_files_in_gitattributes(mock_repository: RepositoryFiles) -> None:

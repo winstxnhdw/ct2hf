@@ -86,7 +86,7 @@ def upload_to_huggingface(repository_directory: Path) -> str:
 def generate_gitattributes(repository_directory: Path, min_lfs_size: int = 10485760) -> Path:
     with (repository_directory / ".gitattributes").open("w", encoding="utf-8") as file:
         file.writelines(
-            f"{path.relative_to(repository_directory)} filter=lfs diff=lfs merge=lfs -text\n"
+            f"{path.relative_to(repository_directory).as_posix()} filter=lfs diff=lfs merge=lfs -text\n"
             for path in repository_directory.rglob("*")
             if path.is_file() and path.stat().st_size > min_lfs_size
         )
