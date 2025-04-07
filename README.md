@@ -4,12 +4,20 @@
 [![main.yml](https://github.com/winstxnhdw/ct2hf/actions/workflows/main.yml/badge.svg)](https://github.com/winstxnhdw/ct2hf/actions/workflows/main.yml)
 [![formatter.yml](https://github.com/winstxnhdw/ct2hf/actions/workflows/formatter.yml/badge.svg)](https://github.com/winstxnhdw/ct2hf/actions/workflows/formatter.yml)
 
-`ct2hf` is a user-friendly CLI tool designed to simplify the process of converting supported Hugging Face transformer models into a [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format. Additionally, it uploads the converted model to your Hugging Face repository. With `ct2hf`, you can avoid the hassle of manual conversions and the common issues of low memory, storage limitations, and permission errors.
+`ct2hf` is a user-friendly CLI tool designed to simplify the process of converting supported Hugging Face transformer models into a [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format. Additionally, it seamlessly uploads the converted model to your Hugging Face repository. No interaction required!
+
+## Features
+
+- **Bloat-Free Usage**: Automatically cleans up all dependencies, even if the program has terminated unexpectedly
+- **Zero Interaction**: Convert, quantise and upload your models to Hugging Face all while brewing your coffee
+- **Memory Efficient**: Utilises the least amount of memory possible to handle large model conversions
+- **Intelligent Defaults**: Avoids common permission and storage pitfalls with sensible defaults
+- **Anti-LFS**: Only uses Git LFS when necessary, avoiding unnecessary issues that arise from using LFS
 
 ## Usage
 
 > [!NOTE]\
-> You have to be logged in to Hugging Face to upload the converted model onto your account. You can do this by running `uvx --from huggingface-hub huggingface-cli login`.
+> You have to be logged in to Hugging Face to upload the converted model onto your account. You can do this by running `uvx --no-cache --from huggingface-hub huggingface-cli login`.
 
 You may use `pip` to install `ct2hf` but we recommended using [uv](https://github.com/astral-sh/uv) to avoid polluting your Python environment.
 
