@@ -125,7 +125,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "accelerate", specifier = ">=1.4.0" },
+    { name = "accelerate", specifier = ">=1.6.0" },
     { name = "ctranslate2", specifier = ">=4.5.0" },
     { name = "transformers", specifier = ">=4.51.0" },
 ]
@@ -133,9 +133,9 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "nodejs-wheel-binaries", specifier = ">=22.14.0" },
-    { name = "pyright", specifier = ">=1.1.396" },
+    { name = "pyright", specifier = ">=1.1.398" },
     { name = "pytest", specifier = ">=8.3.5" },
-    { name = "ruff", specifier = ">=0.9.9" },
+    { name = "ruff", specifier = ">=0.11.4" },
 ]
 
 [[package]]
