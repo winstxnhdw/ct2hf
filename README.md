@@ -8,7 +8,7 @@
 
 ## Features
 
-- **Bloat-Free Usage**: Automatically cleans up all dependencies, even if the program has terminated unexpectedly
+- **Bloat-Free**: Automatically cleans up all dependencies, even if the program has terminated unexpectedly
 - **Zero Interaction**: Convert, quantise and upload your models to Hugging Face all while brewing your coffee
 - **Memory Efficient**: Utilises the least amount of memory possible to handle large model conversions
 - **Intelligent Defaults**: Avoids common permission and storage pitfalls with sensible defaults
