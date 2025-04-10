@@ -4,13 +4,13 @@ version = "0.1.0"
 description = "A user-friendly CLI tool for converting Hugging Face transformer models into a CTranslate2-compatible format."
 readme = "README.md"
 requires-python = ">=3.9, <3.14"
-dependencies = ["accelerate>=1.6.0", "ctranslate2>=4.6.0", "transformers>=4.51.1"]
+dependencies = ["accelerate>=1.6.0", "ctranslate2>=4.6.0", "transformers>=4.51.2"]
 
 [project.scripts]
 ct2hf = "ct2hf:main"
 
 [dependency-groups]
-dev = ["nodejs-wheel-binaries>=22.14.0", "pyright>=1.1.399", "pytest>=8.3.5", "ruff>=0.11.4"]
+dev = ["nodejs-wheel-binaries>=22.14.0", "pyright>=1.1.399", "pytest>=8.3.5", "ruff>=0.11.5"]
 
 [build-system]
 requires = ["hatchling"]
