@@ -64,5 +64,5 @@ ct2hf openchat/openchat-3.6-8b-20240522 --output-name openchat-3.6-ct2-int8
 You can also specify the files to copy to the output model.
 
 ```bash
-ct2hf openchat/openchat-3.6-8b-20240522 --files-to-copy tokenizer.json tokenizer_config.json
+ct2hf openchat/openchat-3.6-8b-20240522 --files-to-copy tokenizer.json
 ```
