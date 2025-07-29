@@ -3,14 +3,21 @@ name = "ct2hf"
 version = "0.1.0"
 description = "A user-friendly CLI tool for converting Hugging Face transformer models into a CTranslate2-compatible format."
 readme = "README.md"
-requires-python = ">=3.9, <3.14"
-dependencies = ["accelerate>=1.9.0", "ctranslate2>=4.6.0", "transformers>=4.54.1"]
+requires-python = ">=3.8"
+dependencies = [
+    "accelerate==1.0.0; python_version < '3.9'",
+    "accelerate>1.0.0; python_version >= '3.9'",
+    "torch==2.0.0; python_version < '3.9'",
+    "torch>2.0.0; python_version >= '3.9'",
+    "ctranslate2>=4.5.0",
+    "transformers>=4.46.3",
+]
 
 [project.scripts]
 ct2hf = "ct2hf:main"
 
 [dependency-groups]
-dev = ["nodejs-wheel-binaries>=22.17.1", "pyright>=1.1.403", "pytest>=8.4.1", "ruff>=0.12.7"]
+dev = ["nodejs-wheel-binaries>=22.17.1", "pyright>=1.1.403", "pytest>=8.3.5", "ruff>=0.12.7"]
 
 [build-system]
 requires = ["hatchling"]
@@ -21,7 +28,7 @@ line-length = 120
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["INP001", "ANN002", "D", "PLR0913", "PT013"]
+ignore = ["INP001", "ANN002", "D", "PLR0913", "PT013", "TC002", "TC003"]
 
 [tool.pyright]
 typeCheckingMode = "strict"
