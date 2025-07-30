@@ -20,8 +20,12 @@ ct2hf = "ct2hf:main"
 dev = ["nodejs-wheel-binaries>=22.17.1", "pyright>=1.1.403", "pytest>=8.3.5", "ruff>=0.12.7"]
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+module-name = "ct2hf"
 
 [tool.ruff]
 line-length = 120
@@ -36,3 +40,6 @@ reportUnknownVariableType = false
 reportUnknownMemberType = false
 reportMissingTypeStubs = false
 reportPrivateUsage = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
