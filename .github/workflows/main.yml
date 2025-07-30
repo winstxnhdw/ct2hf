@@ -20,3 +20,4 @@ jobs:
     with:
       runs-on: ${{ matrix.runs-on }}-latest
       python-version: ${{ matrix.python-version }}
+      install-project: true
