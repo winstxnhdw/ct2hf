@@ -19,17 +19,19 @@ class Arguments(NamedTuple):
     files_to_copy: list[str]
     preserve_models: bool
     compatibility: bool
-    quantisation: Literal[
-        None,
-        "int8",
-        "int8_float32",
-        "int8_float16",
-        "int8_bfloat16",
-        "int16",
-        "float16",
-        "bfloat16",
-        "float32",
-    ]
+    quantisation: (
+        None
+        | Literal[
+            "int8",
+            "int8_float32",
+            "int8_float16",
+            "int8_bfloat16",
+            "int16",
+            "float16",
+            "bfloat16",
+            "float32",
+        ]
+    )
 
 
 def parse_args() -> Arguments:
