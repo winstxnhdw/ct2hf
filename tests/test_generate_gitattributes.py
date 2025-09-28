@@ -4,7 +4,7 @@ from pathlib import Path
 
 from conftest import RepositoryFiles
 
-from ct2hf import generate_gitattributes
+from ct2hf.convert import generate_gitattributes
 
 
 def gitattribute_line(path: Path) -> str:
