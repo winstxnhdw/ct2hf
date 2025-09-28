@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from functools import partial
+from logging import NOTSET, basicConfig, getLogger
 from pathlib import Path
 from shutil import rmtree
 from typing import TYPE_CHECKING, Any, Callable
@@ -10,6 +11,7 @@ from ctranslate2.converters import TransformersConverter
 from huggingface_hub import HfApi
 from huggingface_hub.constants import HF_HUB_CACHE
 from huggingface_hub.file_download import repo_folder_name
+from torch import bfloat16
 
 if TYPE_CHECKING:
     from ct2hf.parse_args import Arguments
@@ -49,11 +51,14 @@ def generate_gitattributes(repository_directory: Path, min_lfs_size: int = 10485
 
 
 def load_model_patch(load_model: Callable[..., Any], *_, **kwargs: Any) -> Any:  # noqa: ANN401
-    kwargs["dtype"] = kwargs.pop("torch_dtype")
+    kwargs.pop("torch_dtype")
+    kwargs["dtype"] = bfloat16
     return load_model(*_, **kwargs)
 
 
 def convert(args: Arguments) -> None:
+    basicConfig(level=NOTSET, format="%(message)s")
+    logger = getLogger(__name__)
     storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=args.model_id, repo_type="model")
     model_name = args.model_id.split("/", 1)[1]
     quantisation = args.quantisation
@@ -81,4 +86,4 @@ def convert(args: Arguments) -> None:
     repository_path = generate_gitattributes(converted_model_path)
     repository_url = upload_to_huggingface(repository_path)
 
-    print(f"Successfully converted and uploaded the model to {repository_url}")  # noqa: T201
+    logger.info("Successfully converted and uploaded the model to %s", repository_url)
