@@ -17,10 +17,7 @@ if TYPE_CHECKING:
     from ct2hf.parse_args import Arguments
 
 
-def clean_up(*, storage_path: str | Path, output_directory: str | Path, preserve_models: bool) -> None:
-    if preserve_models:
-        return
-
+def clean_up(*, storage_path: str | Path, output_directory: str | Path) -> None:
     rmtree(storage_path, ignore_errors=True)
     rmtree(output_directory, ignore_errors=True)
 
@@ -72,13 +69,13 @@ def convert(args: Arguments) -> None:
     quantisation = args.quantisation
     output_directory = args.output_name or f"{model_name}-ct2-{quantisation}" if quantisation else f"{model_name}-ct2"
 
-    finalize(
-        args,
-        clean_up,
-        storage_path=storage_path,
-        output_directory=output_directory,
-        preserve_models=args.preserve_models,
-    )
+    if not args.preserve_models:
+        finalize(
+            args,
+            clean_up,
+            storage_path=storage_path,
+            output_directory=output_directory,
+        )
 
     converter = TransformersConverter(
         args.model_id,
