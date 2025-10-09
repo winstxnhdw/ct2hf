@@ -139,7 +139,7 @@ requires-dist = [
 dev = [
     { name = "nodejs-wheel-binaries", specifier = ">=22.20.0" },
     { name = "pyright", specifier = ">=1.1.406" },
-    { name = "pytest", specifier = ">=8.4.1" },
+    { name = "pytest", specifier = ">=8.4.2" },
     { name = "ruff", specifier = ">=0.14.0" },
 ]
 
