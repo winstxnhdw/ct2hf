@@ -63,10 +63,12 @@ def load_model_patch(load_model: Callable[..., Any], model_refs_path: Path, *_, 
 def convert(args: Arguments) -> None:
     basicConfig(level=INFO, format="%(message)s")
     logger = getLogger(__name__)
-    storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=args.model_id, repo_type="model")
-    refs_path = storage_path / "refs" / (args.revision or DEFAULT_REVISION)
-    model_name = args.model_id.split("/", 1)[1]
+    model_id = args.model_id
+    revision = args.revision
     quantisation = args.quantisation
+    storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=model_id, repo_type="model")
+    refs_path = storage_path / "refs" / (revision or DEFAULT_REVISION)
+    model_name = model_id.split("/", 1)[1]
     output_directory = args.output_name or f"{model_name}-ct2-{quantisation}" if quantisation else f"{model_name}-ct2"
 
     if not args.preserve_models:
@@ -78,10 +80,10 @@ def convert(args: Arguments) -> None:
         )
 
     converter = TransformersConverter(
-        args.model_id,
+        model_id,
         copy_files=args.files_to_copy,
         load_as_float16=True,
-        revision=args.revision,
+        revision=revision,
         low_cpu_mem_usage=not args.compatibility,
         trust_remote_code=True,
     )
