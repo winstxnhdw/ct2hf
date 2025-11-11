@@ -1,24 +1,19 @@
-from typing import Literal, NamedTuple
+from ct2hf.compute_type import ComputeType
 
-class Arguments(NamedTuple):
-    model_id: str
-    output_name: str | None
-    revision: str | None
-    files_to_copy: list[str]
-    preserve_models: bool
-    compatibility: bool
-    quantisation: (
-        None
-        | Literal[
-            "int8",
-            "int8_float32",
-            "int8_float16",
-            "int8_bfloat16",
-            "int16",
-            "float16",
-            "bfloat16",
-            "float32",
-        ]
-    )
+class Arguments:
+    @property
+    def model_id(self) -> str: ...
+    @property
+    def output_name(self) -> str | None: ...
+    @property
+    def revision(self) -> str | None: ...
+    @property
+    def files_to_copy(self) -> list[str]: ...
+    @property
+    def preserve_models(self) -> bool: ...
+    @property
+    def compatibility(self) -> bool: ...
+    @property
+    def quantisation(self) -> ComputeType | None: ...
 
 def parse_args() -> Arguments: ...

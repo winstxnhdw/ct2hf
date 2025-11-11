@@ -1,5 +1,7 @@
 from argparse import ArgumentParser, Namespace
 
+from ct2hf.compute_type import ComputeType
+
 
 def parse_args() -> Namespace:
     parser = ArgumentParser(description="convert and upload a transformer model to huggingface")
@@ -14,17 +16,7 @@ def parse_args() -> Namespace:
         type=lambda choice: None if (quantisation := choice.lower()) == "none" else quantisation,
         help="quantisation type",
         default="int8",
-        choices=[
-            None,
-            "int8",
-            "int8_float32",
-            "int8_float16",
-            "int8_bfloat16",
-            "int16",
-            "float16",
-            "bfloat16",
-            "float32",
-        ],
+        choices=(None, *ComputeType.__args__),
     )
 
     return parser.parse_known_args()[0]

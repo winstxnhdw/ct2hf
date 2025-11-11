@@ -5,7 +5,7 @@ from json import load
 from logging import INFO, basicConfig, getLogger
 from pathlib import Path
 from shutil import rmtree
-from typing import TYPE_CHECKING, Any, Callable
+from typing import Any, Callable
 from weakref import finalize
 
 from ctranslate2.converters import TransformersConverter
@@ -13,8 +13,7 @@ from huggingface_hub import HfApi
 from huggingface_hub.constants import DEFAULT_REVISION, HF_HUB_CACHE
 from huggingface_hub.file_download import repo_folder_name
 
-if TYPE_CHECKING:
-    from ct2hf.parse_args import Arguments
+from ct2hf.compute_type import ComputeType
 
 
 def clean_up(*, storage_path: str | Path, output_directory: str | Path) -> None:
@@ -25,7 +24,6 @@ def clean_up(*, storage_path: str | Path, output_directory: str | Path) -> None:
 def upload_to_huggingface(repository_directory: Path) -> str:
     hf_api = HfApi()
     repository_id = f"{hf_api.whoami()['name']}/{repository_directory}"
-
     repo_url = hf_api.create_repo(repository_id, exist_ok=True)
     hf_api.upload_folder(
         repo_id=repository_id,
@@ -55,25 +53,31 @@ def load_model_patch(load_model: Callable[..., Any], model_refs_path: Path, *_, 
         config = load(json)
 
     kwargs.pop("torch_dtype")
-    kwargs["dtype"] = config.get("dtype") or config.get("torch_dtype") or "bfloat16"
+    kwargs["dtype"] = config.get("dtype", config.get("torch_dtype", "bfloat16"))
 
     return load_model(*_, **kwargs)
 
 
-def convert(args: Arguments) -> None:
+def convert(
+    model_id: str,
+    *,
+    output_name: str | None,
+    revision: str | None,
+    files_to_copy: list[str],
+    preserve_models: bool,
+    compatibility: bool,
+    quantisation: ComputeType | None,
+) -> None:
     basicConfig(level=INFO, format="%(message)s")
     logger = getLogger(__name__)
-    model_id = args.model_id
-    revision = args.revision
-    quantisation = args.quantisation
     storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=model_id, repo_type="model")
     refs_path = storage_path / "refs" / (revision or DEFAULT_REVISION)
-    model_name = model_id.split("/", 1)[1]
-    output_directory = args.output_name or f"{model_name}-ct2-{quantisation}" if quantisation else f"{model_name}-ct2"
+    _, model_name = model_id.split("/", 1)
+    output_directory = output_name or f"{model_name}-ct2-{quantisation}" if quantisation else f"{model_name}-ct2"
 
-    if not args.preserve_models:
+    if not preserve_models:
         finalize(
-            args,
+            storage_path,
             clean_up,
             storage_path=storage_path,
             output_directory=output_directory,
@@ -81,10 +85,10 @@ def convert(args: Arguments) -> None:
 
     converter = TransformersConverter(
         model_id,
-        copy_files=args.files_to_copy,
+        copy_files=files_to_copy,
         load_as_float16=True,
         revision=revision,
-        low_cpu_mem_usage=not args.compatibility,
+        low_cpu_mem_usage=not compatibility,
         trust_remote_code=True,
     )
 
