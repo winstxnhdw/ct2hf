@@ -15,10 +15,21 @@
 - **Intelligent Defaults**: Avoids common permission and storage pitfalls with sensible defaults
 - **Anti-LFS**: Only uses Git LFS when necessary, avoiding unnecessary issues that arise from using LFS
 
-## Usage
+## Setup
 
-> [!NOTE]\
-> You have to be logged in to Hugging Face to upload the converted model onto your account. You can do this by running `uvx --no-cache --from huggingface-hub huggingface-cli login`.
+You have to be logged in to Hugging Face to upload the converted model onto your account.
+
+```bash
+uvx --no-cache --from huggingface-hub huggingface-cli login
+```
+
+Or without [uv](https://github.com/astral-sh/uv).
+
+```bash
+huggingface-cli login
+```
+
+## Usage
 
 You may use `pip` to install `ct2hf` but we recommended using [uv](https://github.com/astral-sh/uv) to avoid polluting your Python environment.
 
