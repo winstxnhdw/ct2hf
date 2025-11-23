@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from functools import partial
 from json import load
 from logging import INFO, basicConfig, getLogger
 from pathlib import Path
 from shutil import rmtree
-from typing import Any, Callable
+from typing import Any
 from weakref import finalize
 
 from ctranslate2.converters import TransformersConverter
