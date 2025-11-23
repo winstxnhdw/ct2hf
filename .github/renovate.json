@@ -1,4 +1,4 @@
 {
 	"extends": ["github>winstxnhdw/renovate"],
-	"ignoreDeps": ["accelerate", "pytest"]
+	"ignoreDeps": ["accelerate", "pytest", "python"]
 }
