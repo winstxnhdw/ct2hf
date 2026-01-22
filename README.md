@@ -7,13 +7,13 @@
 
 `ct2hf` is a user-friendly CLI tool designed to simplify the process of converting supported Hugging Face transformer models into a [CTranslate2](https://github.com/OpenNMT/CTranslate2)-compatible format. Additionally, it seamlessly uploads the converted model to your Hugging Face repository. No interaction required!
 
-## Features
+## Highlights
 
-- **Bloat-Free**: Automatically cleans up all dependencies, even if the program has terminated unexpectedly
-- **Zero Interaction**: Convert, quantise and upload your models to Hugging Face all while brewing your coffee
-- **Memory Efficient**: Utilises the least amount of memory possible to handle large model conversions
-- **Intelligent Defaults**: Avoids common permission and storage pitfalls with sensible defaults
-- **Anti-LFS**: Only uses Git LFS when necessary, avoiding unnecessary issues that arise from using LFS
+- Convert, quantise and upload your models completely hands-free
+- Automatically cleans up all dependencies, even if the program has terminated unexpectedly
+- Utilises the least amount of memory possible to handle large model conversions
+- Avoids common permission and storage pitfalls with sensible defaults
+- Only uses Git LFS when necessary, avoiding unnecessary issues that arise from using LFS
 
 ## Setup
 
