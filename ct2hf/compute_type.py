@@ -1,4 +1,4 @@
-from typing_extensions import Literal, TypeAlias
+from typing import Literal, TypeAlias
 
 ComputeType: TypeAlias = Literal[
     "int8",

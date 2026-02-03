@@ -25,7 +25,7 @@ line-length = 120
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["D", "INP001", "ANN002", "PLR0913", "PT013", "TC001", "COM812"]
+ignore = ["D", "INP001", "ANN002", "PLR0913", "PT013", "TC001", "TC003", "COM812"]
 
 [tool.pyright]
 typeCheckingMode = "strict"
