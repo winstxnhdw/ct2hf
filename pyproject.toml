@@ -10,7 +10,7 @@ dependencies = ["accelerate>=1.14.0", "ctranslate2>=4.8.0", "transformers>=5.12.
 ct2hf = "ct2hf:main"
 
 [dependency-groups]
-dev = ["nodejs-wheel-binaries>=24.16.0", "pyright>=1.1.410", "pytest>=9.1.1", "ruff>=0.15.19"]
+dev = ["nodejs-wheel-binaries>=24.16.0", "pyright>=1.1.411", "pytest>=9.1.1", "ruff>=0.15.19"]
 
 [build-system]
 requires = ["uv_build"]
