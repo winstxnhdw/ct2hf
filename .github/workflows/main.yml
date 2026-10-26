@@ -16,7 +16,7 @@ jobs:
         python-version: ["3.10", 3.11, 3.12, 3.13, 3.14]
         runs-on: [ubuntu, windows, macos]
 
-    uses: winstxnhdw/actions/.github/workflows/uv.yml@9a8a1548bdf2fae3fe2f70426f0af4dfef3c38b4 # main
+    uses: winstxnhdw/actions/.github/workflows/uv.yml@bfab88ec8f2299aca2069cf92f09d011b65f0889 # main
     with:
       runs-on: ${{ matrix.runs-on }}-latest
       python-version: ${{ matrix.python-version }}
