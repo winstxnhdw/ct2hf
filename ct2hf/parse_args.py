@@ -1,4 +1,5 @@
 from argparse import ArgumentParser, Namespace
+from typing import get_args
 
 from ct2hf.compute_type import ComputeType
 
@@ -16,7 +17,7 @@ def parse_args() -> Namespace:
         type=lambda choice: None if (quantisation := choice.lower()) == "none" else quantisation,
         help="quantisation type",
         default="int8",
-        choices=(None, *ComputeType.__args__),
+        choices=(None, *get_args(ComputeType)),
     )
 
     return parser.parse_known_args()[0]

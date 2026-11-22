@@ -1,17 +1,13 @@
 from __future__ import annotations
 
-from collections.abc import Callable
-from functools import partial
-from json import load
-from logging import INFO, basicConfig, getLogger
 from pathlib import Path
 from shutil import rmtree
-from typing import Any
+from sys import stdout
 from weakref import finalize
 
 from ctranslate2.converters import TransformersConverter
 from huggingface_hub import HfApi
-from huggingface_hub.constants import DEFAULT_REVISION, HF_HUB_CACHE
+from huggingface_hub.constants import HF_HUB_CACHE
 from huggingface_hub.file_download import repo_folder_name
 
 from ct2hf.compute_type import ComputeType
@@ -46,19 +42,6 @@ def generate_gitattributes(repository_directory: Path, min_lfs_size: int = 10485
     return repository_directory
 
 
-def load_model_patch(load_model: Callable[..., Any], model_refs_path: Path, *_, **kwargs: Any) -> Any:  # noqa: ANN401
-    with (
-        model_refs_path.open("r") as commit_hash,
-        (model_refs_path.parent.parent / "snapshots" / commit_hash.read().strip() / "config.json").open("r") as json,
-    ):
-        config = load(json)
-
-    kwargs.pop("torch_dtype")
-    kwargs["dtype"] = config.get("dtype", config.get("torch_dtype", "bfloat16"))
-
-    return load_model(*_, **kwargs)
-
-
 def convert(
     model_id: str,
     *,
@@ -69,12 +52,9 @@ def convert(
     compatibility: bool,
     quantisation: ComputeType | None,
 ) -> None:
-    basicConfig(level=INFO, format="%(message)s")
-    logger = getLogger(__name__)
     storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=model_id, repo_type="model")
-    refs_path = storage_path / "refs" / (revision or DEFAULT_REVISION)
     _, model_name = model_id.split("/", 1)
-    output_directory = output_name or f"{model_name}-ct2-{quantisation}" if quantisation else f"{model_name}-ct2"
+    output_directory = output_name or "-".join(filter(None, (model_name, "ct2", quantisation)))
 
     if not preserve_models:
         finalize(
@@ -93,9 +73,8 @@ def convert(
         trust_remote_code=True,
     )
 
-    converter.load_model = partial(load_model_patch, converter.load_model, refs_path)
     converted_model_path = Path(converter.convert(output_directory, quantization=quantisation))
     repository_path = generate_gitattributes(converted_model_path)
     repository_url = upload_to_huggingface(repository_path)
 
-    logger.info("Successfully converted and uploaded the model to %s", repository_url)
+    stdout.write(f"Successfully converted and uploaded the model to {repository_url}\n")
