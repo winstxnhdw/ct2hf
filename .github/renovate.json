@@ -1,4 +1,11 @@
 {
 	"extends": ["github>winstxnhdw/renovate"],
-	"ignoreDeps": ["python", "accelerate"]
+	"ignoreDeps": ["python"],
+	"packageRules": [
+		{
+			"matchManagers": ["pep621"],
+			"matchPackageNames": ["accelerate", "transformers"],
+			"rangeStrategy": "update-lockfile"
+		}
+	]
 }
