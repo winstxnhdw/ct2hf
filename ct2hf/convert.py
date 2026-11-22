@@ -3,9 +3,9 @@ from __future__ import annotations
 from collections.abc import Callable
 from functools import partial
 from json import load
-from logging import INFO, basicConfig, getLogger
 from pathlib import Path
 from shutil import rmtree
+from sys import stdout
 from typing import Any
 from weakref import finalize
 
@@ -69,12 +69,10 @@ def convert(
     compatibility: bool,
     quantisation: ComputeType | None,
 ) -> None:
-    basicConfig(level=INFO, format="%(message)s")
-    logger = getLogger(__name__)
     storage_path = Path(HF_HUB_CACHE) / repo_folder_name(repo_id=model_id, repo_type="model")
     refs_path = storage_path / "refs" / (revision or DEFAULT_REVISION)
     _, model_name = model_id.split("/", 1)
-    output_directory = output_name or f"{model_name}-ct2-{quantisation}" if quantisation else f"{model_name}-ct2"
+    output_directory = output_name or "-".join(filter(None, (model_name, "ct2", quantisation)))
 
     if not preserve_models:
         finalize(
@@ -98,4 +96,4 @@ def convert(
     repository_path = generate_gitattributes(converted_model_path)
     repository_url = upload_to_huggingface(repository_path)
 
-    logger.info("Successfully converted and uploaded the model to %s", repository_url)
+    stdout.write(f"Successfully converted and uploaded the model to {repository_url}\n")
